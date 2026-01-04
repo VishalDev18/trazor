@@ -57,7 +57,7 @@ export default function Home() {
       </section>
 
       {/* RIGHT SECTION */}
-      <section className="w-full lg:w-3/5 max-h-screen flex flex-col items-center bg-gray-50 overflow-y-auto p-5 py-10">
+      <section className="w-full lg:w-3/5 min-h-0 max-h-screen flex flex-col items-center bg-gray-50 overflow-y-auto p-5 py-10">
 
         {/* CONNECT CARD */}
         <div className="flex h-[122px] w-[360px] max-w-full rounded-full p-2.5 bg-white items-center shadow-lg mb-16">
