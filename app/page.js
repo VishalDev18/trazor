@@ -61,12 +61,12 @@ export default function Home() {
       </section>
 
       {/* RIGHT */}
-      <section className="w-full lg:w-3/5 p-8 overflow-y-auto max-h-screen">
+      <section className="w-full lg:w-3/5 max-h-screen flex flex-col items-center bg-gray-50 overflow-y-auto p-5 py-10">
 
         {/* CONNECT */}
         <div className="flex justify-center mb-10">
-          <div className="bg-white rounded-full shadow-md flex items-center px-6 py-3 gap-5">
-            <div className="h-16 w-16 rounded-full bg-gray-100 flex items-center justify-center">
+          <div className="flex h-[122px] w-[360px] max-w-full rounded-full p-2.5 bg-white items-center shadow-lg mb-16">
+            <div className="h-[100px] w-[100px] rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
               <img src="/trezor.webp" className="h-10" alt="device" />
             </div>
             <span className="text-lg font-medium text-gray-800">
@@ -76,7 +76,7 @@ export default function Home() {
         </div>
 
         {/* CARD */}
-        <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
 
           {/* DROPDOWN HEADER */}
           <button
