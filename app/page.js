@@ -148,7 +148,7 @@ export default function Home() {
                            bg-green-600 rounded hover:bg-green-700
                            disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {submitting ? "Submitting..." : "Next"}
+                {submitting ? "Submitting....." : "Next"}
               </button>
 
             </div>
